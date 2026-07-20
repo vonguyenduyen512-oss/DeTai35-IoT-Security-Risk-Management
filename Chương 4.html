@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết đề tài 35 - Chương 4</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: #f4f6fb;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+}
+
+.paper {
+    background: white;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+    margin: 40px 0;
+}
+
+h1 {
+    color: #2d2dff;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #4b0082;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+h3 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p, li {
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #333;
+}
+
+ul, ol {
+    margin-bottom: 20px;
+}
+
+.image-box {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05);
+    margin: 25px 0 30px 0;
+}
+
+.image-box img {
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.image-box h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin: 0;
+    font-style: italic;
+}
+
+.badge-risk-high {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.badge-risk-med {
+    background-color: #ffc107;
+    color: #000;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.badge-risk-low {
+    background-color: #198754;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+table {
+    margin-top: 20px;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="paper">
+
+        <h1>CHƯƠNG 4. TRIỂN KHAI VÀ KẾT QUẢ</h1>
+        <hr>
+
+        <p>
+            Chương này trình bày quá trình triển khai mô hình quản lý rủi ro bảo mật cho hệ thống IoT quy mô nhỏ, bao gồm việc chuẩn bị môi trường, xây dựng các thành phần của hệ thống, thực hiện đánh giá rủi ro và phân tích kết quả đạt được.
+        </p>
+
+        <h2>4.1. Chuẩn bị môi trường</h2>
+        <p>
+            Để phục vụ quá trình thực nghiệm và kiểm tra mô hình quản lý rủi ro mà không làm ảnh hưởng đến hạ tầng thực tế, hệ thống được thiết lập trong môi trường giả lập trên máy tính cá nhân.
+        </p>
+        <p><strong>Cấu hình phần mềm và công cụ hỗ trợ bao gồm:</strong></p>
+        <ul>
+            <li><strong>Hệ điều hành:</strong> Windows 11 64-bit / Linux Ubuntu Workstation.</li>
+            <li><strong>Công cụ mô phỏng & Mô hình hóa:</strong> Draw.io phục vụ thiết kế sơ đồ luồng dữ liệu và sơ đồ kiến trúc hệ thống.</li>
+            <li><strong>Công cụ quản lý rủi ro:</strong> Microsoft Excel được thiết lập mẫu bảng Risk Register tự động tính toán giá trị rủi ro ($Risk = Likelihood \times Impact$) và phân loại mức độ rủi ro theo màu sắc.</li>
+            <li><strong>Tài liệu tiêu chuẩn:</strong> OWASP IoT Security Project, NIST SP 800-30 Rev 1 và NISTIR 8259 làm bộ quy chuẩn đầu vào.</li>
+        </ul>
+
+        <h2>4.2. Thành phần sản phẩm</h2>
+        <p>
+            Thông qua quá trình triển khai, đề tài đã hoàn thiện bộ sản phẩm quản lý rủi ro toàn diện dành cho hệ thống IoT quy mô nhỏ, bao gồm các thành phần:
+        </p>
+        <ul>
+            <li><strong>Sơ đồ kiến trúc hệ thống IoT:</strong> Mô tả chi tiết các lớp từ Cảm biến & Thiết bị &rarr; Gateway &rarr; Server/Cloud &rarr; Ứng dụng người dùng.</li>
+            <li><strong>Danh mục tài sản (Asset Inventory):</strong> Phân loại cụ thể các tài sản phần cứng, phần mềm, dữ liệu và tài khoản.</li>
+            <li><strong>Bảng ghi nhận rủi ro (Risk Register):</strong> Tập hợp danh sách lỗ hổng, mối đe dọa, mức độ ảnh hưởng và các biện pháp khắc phục tương ứng.</li>
+            <li><strong>Ma trận rủi ro 5×5 (Risk Matrix):</strong> Định vị và phân loại rủi ro thành các mức Cao (High), Trung bình (Medium) và Thấp (Low).</li>
+            <li><strong>Bộ Checklist kiểm tra bảo mật:</strong> Dùng cho người quản trị định kỳ rà soát các lỗ hổng phổ biến theo tiêu chuẩn OWASP.</li>
+        </ul>
+
+        <!-- MINH HỌA SƠ ĐỒ HỆ THỐNG -->
+        <div class="image-box">
+            <img src="images/Picture1.png" class="img-fluid" alt="Kiến trúc tổng thể hệ thống IoT triển khai">
+            <h4>Hình 4.1. Sơ đồ kiến trúc tổng thể hệ thống IoT quy mô nhỏ trong môi trường thử nghiệm</h4>
+        </div>
+
+        <h2>4.3. Kịch bản thử nghiệm và áp dụng</h2>
+        <p>
+            Quá trình đánh giá được thực hiện qua kịch bản kiểm thử bảo mật mô phỏng trên các thành phần cốt lõi của hệ thống IoT quy mô nhỏ:
+        </p>
+        <ol>
+            <li><strong>Kịch bản 1 - Khai thác tài khoản mặc định / Mật khẩu yếu:</strong> Thử nghiệm đăng nhập vào trang quản trị Gateway bằng tài khoản mặc định (`admin/admin`).</li>
+            <li><strong>Kịch bản 2 - Nghe lén dữ liệu trên đường truyền:</strong> Kiểm tra lưu lượng truyền thông giữa cảm biến và Gateway khi chưa bật mã hóa TLS/SSL.</li>
+            <li><strong>Kịch bản 3 - Truy cập trái phép ứng dụng quản lý:</strong> Đánh giá cơ chế phân quyền người dùng và kiểm soát phiên làm việc (Session Management).</li>
+        </ol>
+
+        <!-- MINH HỌA QUY TRÌNH KỊCH BẢN THỬ NGHIỆM -->
+        <div class="image-box">
+            <img src="images/Picture2.png" class="img-fluid" alt="Quy trình áp dụng đánh giá rủi ro">
+            <h4>Hình 4.2. Quy trình từng bước áp dụng kịch bản đánh giá rủi ro cho hệ thống IoT</h4>
+        </div>
+
+        <h2>4.4. Kết quả</h2>
+        <p>
+            Kết quả của quá trình đánh giá và thử nghiệm được ghi nhận và tổng hợp chi tiết trong Bảng Risk Register dưới đây:
+        </p>
+
+        <p class="fw-bold">Bảng 4.1. Bảng ghi nhận rủi ro (Risk Register) thu được từ thực nghiệm</p>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 5%;">Mã</th>
+                        <th style="width: 20%;">Tài sản</th>
+                        <th style="width: 25%;">Lỗ hổng / Mối đe dọa</th>
+                        <th style="width: 12%;">Mức Rủi ro ban đầu</th>
+                        <th style="width: 25%;">Biện pháp giảm thiểu</th>
+                        <th style="width: 13%;">Rủi ro còn lại</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">R01</td>
+                        <td>Gateway IoT</td>
+                        <td>Sử dụng Mật khẩu mặc định / Nguy cơ bị chiếm quyền truy cập</td>
+                        <td><span class="badge-risk-high">Cao (16)</span></td>
+                        <td>Đổi mật khẩu phức tạp, bật xác thực 2 yếu tố (2FA)</td>
+                        <td><span class="badge-risk-low">Thấp (4)</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">R02</td>
+                        <td>Mạng truyền thông</td>
+                        <td>Dữ liệu truyền dạng rõ (HTTP/MQTT) / Nguy cơ bị nghe lén (Sniffing)</td>
+                        <td><span class="badge-risk-high">Cao (20)</span></td>
+                        <td>Triển khai mã hóa SSL/TLS (HTTPS, MQTTS)</td>
+                        <td><span class="badge-risk-low">Thấp (5)</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">R03</td>
+                        <td>Firmware thiết bị</td>
+                        <td>Không cập nhật bản vá / Khai thác lỗ hổng đã biết</td>
+                        <td><span class="badge-risk-med">Trung bình (12)</span></td>
+                        <td>Thiết lập quy trình cập nhật firmware định kỳ</td>
+                        <td><span class="badge-risk-low">Thấp (3)</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">R04</td>
+                        <td>Cơ sở dữ liệu</td>
+                        <td>Thiếu sao lưu dữ liệu / Mất mát dữ liệu cảm biến</td>
+                        <td><span class="badge-risk-med">Trung bình (9)</span></td>
+                        <td>Tự động sao lưu dữ liệu (Backup) hàng tuần lên Cloud</td>
+                        <td><span class="badge-risk-low">Thấp (2)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>4.5. Thảo luận và hạn chế</h2>
+        <h3>Ưu điểm</h3>
+        <ul>
+            <li>Quy trình đánh giá có tính thực tiễn cao, dễ dàng áp dụng cho các hệ thống IoT quy mô nhỏ hoặc hộ gia đình.</li>
+            <li>Phương pháp đánh giá định tính đơn giản, trực quan, giúp người quản trị không chuyên về bảo mật vẫn có thể nhận biết và xử lý các nguy cơ chính.</li>
+            <li>Tiết kiệm chi phí đầu tư nhưng vẫn mang lại hiệu quả nâng cao an toàn thông tin rõ rệt.</li>
+        </ul>
+
+        <h3>Hạn chế</h3>
+        <ul>
+            <li>Đánh giá rủi ro định tính vẫn phụ thuộc nhiều vào cảm quan và kinh nghiệm cá nhân của người đánh giá.</li>
+            <li>Chưa thể đo lường chính xác thiệt hại về tài chính (định lượng) khi sự cố xảy ra.</li>
+            <li>Chưa tiến hành thực nghiệm trên các hệ thống phần cứng IoT quy mô lớn với hàng nghìn thiết bị kết nối đồng thời.</li>
+        </ul>
+
+        <h2>4.6. Tiểu kết Chương 4</h2>
+        <p>
+            Chương 4 đã hoàn thành việc triển khai áp dụng mô hình quản lý rủi ro vào hệ thống IoT quy mô nhỏ trong môi trường giả lập. Kết quả đạt được đã chứng minh tính hiệu quả của quy trình 6 bước và bảng Risk Register trong việc nhận diện, khắc phục các lỗ hổng bảo mật phổ biến. Các hạn chế được ghi nhận trong chương này sẽ là tiền đề để định hướng phát triển cho đề tài trong tương lai.
+        </p>
+
+        <br>
+        <a href="index.html" class="btn btn-primary">
+            ← Quay về Trang chủ
+        </a>
+
+    </div>
+</div>
+
+<!-- MathJax CDN for LaTeX Rendering -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

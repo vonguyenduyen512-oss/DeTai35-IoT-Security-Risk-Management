@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết đề tài 35 - Chương 5</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: #f4f6fb;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+}
+
+.paper {
+    background: white;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+    margin: 40px 0;
+}
+
+h1 {
+    color: #2d2dff;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #4b0082;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+h3 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p, li {
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #333;
+}
+
+ul, ol {
+    margin-bottom: 20px;
+}
+
+.image-box {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05);
+    margin: 25px 0 30px 0;
+}
+
+.image-box img {
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.image-box h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin: 0;
+    font-style: italic;
+}
+
+.badge-risk-high {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.badge-risk-med {
+    background-color: #ffc107;
+    color: #000;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.badge-risk-low {
+    background-color: #198754;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.matrix-table td, .matrix-table th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.matrix-high {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.matrix-med {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+
+.matrix-low {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+table {
+    margin-top: 20px;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="paper">
+
+        <h1>CHƯƠNG 5. ĐÁNH GIÁ BẢO MẬT</h1>
+        <hr>
+
+        <p>
+            Chương này tập trung vào việc đánh giá mức độ rủi ro của hệ thống IoT quy mô nhỏ dựa trên các tài sản cần bảo vệ, các mối đe dọa và lỗ hổng bảo mật đã được nhận diện. Đồng thời, chương cũng trình bày các biện pháp giảm thiểu và đánh giá rủi ro còn lại sau khi áp dụng các giải pháp bảo mật.
+        </p>
+
+        <h2>5.1. Tài sản và dữ liệu</h2>
+        <p>
+            Việc nhận diện và phân loại tài sản là bước khởi đầu quan trọng trong quy trình quản lý rủi ro dựa trên tài sản (Asset-Based Risk Assessment). Tài sản của hệ thống IoT quy mô nhỏ được chi làm các nhóm cơ bản dưới đây:
+        </p>
+
+        <p class="fw-bold">Bảng 5.1. Phân loại và định giá tài sản hệ thống IoT</p>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 10%;">Mã TS</th>
+                        <th style="width: 25%;">Tên tài sản</th>
+                        <th style="width: 20%;">Phân loại</th>
+                        <th style="width: 30%;">Mô tả & Mức độ quan trọng</th>
+                        <th style="width: 15%;">Mức ưu tiên</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">TS01</td>
+                        <td>Gateway IoT</td>
+                        <td>Phần cứng / Thiết bị</td>
+                        <td>Điểm trung tâm xử lý và điều phối dữ liệu mạng nội bộ.</td>
+                        <td><span class="badge-risk-high">Rất cao</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">TS02</td>
+                        <td>Cảm biến & Thiết bị cuối</td>
+                        <td>Phần cứng / IoT Node</td>
+                        <td>Thu thập thông tin môi trường và thực thi điều khiển.</td>
+                        <td><span class="badge-risk-med">Trung bình</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">TS03</td>
+                        <td>Dữ liệu truyền tải</td>
+                        <td>Dữ liệu / Luồng tin</td>
+                        <td>Dữ liệu cảm biến, câu lệnh điều khiển lưu thông trên mạng.</td>
+                        <td><span class="badge-risk-high">Cao</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">TS04</td>
+                        <td>Tài khoản quản trị</td>
+                        <td>Định danh / Quyền hạn</td>
+                        <td>Thông tin đăng nhập ứng dụng quản lý và hệ thống Gateway.</td>
+                        <td><span class="badge-risk-high">Rất cao</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">TS05</td>
+                        <td>Firmware & Cấu hình</td>
+                        <td>Phần mềm / Cấu hình</td>
+                        <td>Chương trình nhúng điều khiển thiết bị và thông số mạng.</td>
+                        <td><span class="badge-risk-med">Trung bình</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SƠ ĐỒ KIẾN TRÚC TÀI SẢN -->
+        <div class="image-box">
+            <img src="images/Picture1.png" class="img-fluid" alt="Phân bố tài sản trong kiến trúc IoT">
+            <h4>Hình 5.1. Vị trí các nhóm tài sản trong kiến trúc tổng thể hệ thống IoT</h4>
+        </div>
+
+        <h2>5.2. Mối đe dọa và lỗ hổng</h2>
+        <p>
+            Dựa trên khung chuẩn <strong>OWASP IoT Security Project</strong> và <strong>NIST SP 800-30</strong>, đề tài nhận diện các mối đe dọa chính tương ứng với những lỗ hổng bảo mật phổ biến tồn tại trong hệ thống IoT quy mô nhỏ:
+        </p>
+        <ul>
+            <li><strong>Lỗ hổng mật khẩu yếu / Mặc định (Insecure Default Settings):</strong> Người dùng không thay đổi mật khẩu mặc định của thiết bị Gateway hoặc ứng dụng, tạo điều kiện cho kẻ tấn công dò quét (Brute-force) và chiếm quyền quản trị.</li>
+            <li><strong>Lỗ hổng truyền thông không mã hóa (Insecure Network Services):</strong> Dữ liệu cảm biến và lệnh điều khiển được gửi qua giao thức mã rõ (HTTP, MQTT không mã hóa SSL/TLS), dẫn đến nguy cơ bị nghe lén (Sniffing) hoặc tấn công đứng giữa (Man-in-the-Middle).</li>
+            <li><strong>Thiếu cơ chế cập nhật an toàn (Lack of Secure Update Mechanism):</strong> Firmware không được ký số (Digital Signature) hoặc không được cập nhật định kỳ, khiến thiết bị dễ bị cài cắm mã độc.</li>
+            <li><strong>Thiếu kiểm soát truy cập và phân quyền (Insufficient Authentication/Authorization):</strong> Ranh giới tin cậy không được phân tách rõ ràng, tài khoản người dùng thông thường có thể truy cập các chức năng quản trị.</li>
+        </ul>
+
+        <h2>5.3. Ma trận rủi ro</h2>
+        <p>
+            Mức độ rủi ro được tính toán dựa trên khả năng xảy ra (Likelihood - thang điểm từ 1 đến 5) và mức độ tác động (Impact - thang điểm từ 1 đến 5) theo công thức:
+        </p>
+        <p class="text-center fw-bold style-formula" style="font-size: 1.2rem; color: #2d2dff;">
+            Mức độ rủi ro (Risk) = Khả năng xảy ra (Likelihood) &times; Mức độ tác động (Impact)
+        </p>
+
+        <p class="fw-bold">Bảng 5.2. Ma trận đánh giá rủi ro 5×5 (Risk Matrix)</p>
+        <div class="table-responsive">
+            <table class="table table-bordered matrix-table">
+                <thead class="table-light">
+                    <tr>
+                        <th rowspan="2" style="vertical-align: middle;">Khả năng xảy ra (Likelihood)</th>
+                        <th colspan="5">Mức độ tác động (Impact)</th>
+                    </tr>
+                    <tr>
+                        <th style="width: 15%;">1 - Rất thấp</th>
+                        <th style="width: 15%;">2 - Thấp</th>
+                        <th style="width: 15%;">3 - Trung bình</th>
+                        <th style="width: 15%;">4 - Cao</th>
+                        <th style="width: 15%;">5 - Rất cao</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>5 - Rất cao</th>
+                        <td class="matrix-med">5 (TB)</td>
+                        <td class="matrix-med">10 (TB)</td>
+                        <td class="matrix-high">15 (Cao)</td>
+                        <td class="matrix-high">20 (Cao)</td>
+                        <td class="matrix-high">25 (Cao)</td>
+                    </tr>
+                    <tr>
+                        <th>4 - Cao</th>
+                        <td class="matrix-low">4 (Thấp)</td>
+                        <td class="matrix-med">8 (TB)</td>
+                        <td class="matrix-med">12 (TB)</td>
+                        <td class="matrix-high">16 (Cao)</td>
+                        <td class="matrix-high">20 (Cao)</td>
+                    </tr>
+                    <tr>
+                        <th>3 - Trung bình</th>
+                        <td class="matrix-low">3 (Thấp)</td>
+                        <td class="matrix-med">6 (TB)</td>
+                        <td class="matrix-med">9 (TB)</td>
+                        <td class="matrix-high">12 (Cao)</td>
+                        <td class="matrix-high">15 (Cao)</td>
+                    </tr>
+                    <tr>
+                        <th>2 - Thấp</th>
+                        <td class="matrix-low">2 (Thấp)</td>
+                        <td class="matrix-low">4 (Thấp)</td>
+                        <td class="matrix-med">6 (TB)</td>
+                        <td class="matrix-med">8 (TB)</td>
+                        <td class="matrix-med">10 (TB)</td>
+                    </tr>
+                    <tr>
+                        <th>1 - Rất thấp</th>
+                        <td class="matrix-low">1 (Thấp)</td>
+                        <td class="matrix-low">2 (Thấp)</td>
+                        <td class="matrix-low">3 (Thấp)</td>
+                        <td class="matrix-low">4 (Thấp)</td>
+                        <td class="matrix-med">5 (TB)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Phân vùng mức độ ưu tiên xử lý:</strong></p>
+        <ul>
+            <li><span class="badge-risk-high">Mức Cao (12 - 25):</span> Cần áp dụng giải pháp khắc phục ngay lập tức.</li>
+            <li><span class="badge-risk-med">Mức Trung bình (5 - 10):</span> Cần lập kế hoạch kiểm soát và theo dõi định kỳ.</li>
+            <li><span class="badge-risk-low">Mức Thấp (1 - 4):</span> Mức độ nguy cơ chấp nhận được, duy trì quy trình kiểm tra hiện tại.</li>
+        </ul>
+
+        <h2>5.4. Biện pháp giảm thiểu</h2>
+        <p>
+            Đối với các rủi ro được định vị ở mức **Cao** và **Trung bình**, đề tài đề xuất tập hợp các biện pháp kỹ thuật và quản lý nhằm đưa mức độ rủi ro về ngưỡng an toàn:
+        </p>
+
+        <!-- SƠ ĐỒ QUY TRÌNH ÁP DỤNG BIỆN PHÁP GIẢM THIỂU -->
+        <div class="image-box">
+            <img src="images/Picture2.png" class="img-fluid" alt="Quy trình triển khai giảm thiểu rủi ro">
+            <h4>Hình 5.2. Quy trình từng bước áp dụng biện pháp giảm thiểu và kiểm soát rủi ro</h4>
+        </div>
+
+        <ol>
+            <li><strong>Cấu hình an toàn và Quản lý định danh:</strong> Bắt buộc thay đổi mật khẩu mặc định ngay khi thiết lập hệ thống. Áp dụng chính sách mật khẩu phức tạp (tối thiểu 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt) và kích hoạt xác thực hai yếu tố (2FA) cho tài khoản quản trị.</li>
+            <li><strong>Mã hóa kênh truyền thông:</strong> Triển khai giao thức MQTTS (MQTT over TLS/SSL) cho kết nối giữa Cảm biến &rarr; Gateway và HTTPS cho kết nối Gateway &rarr; Server/Cloud nhằm bảo đảm tính bí mật và toàn vẹn của dữ liệu.</li>
+            <li><strong>Phân đoạn mạng (Network Segmentation):</strong> Thiết lập mạng Wi-Fi riêng biệt (Guest Network / VLAN) dành riêng cho các thiết bị IoT, ngăn cách hoàn toàn với mạng làm việc chính của người dùng.</li>
+            <li><strong>Cập nhật Firmware và Bảo trì:</strong> Xây dựng quy trình cập nhật firmware định kỳ, chỉ sử dụng bản cập nhật chính thức từ nhà sản xuất có chữ ký số xác thực.</li>
+        </ol>
+
+        <h2>5.5. Rủi ro còn lại</h2>
+        <p>
+            Sau khi áp dụng đầy đủ các biện pháp kiểm soát và giảm thiểu rủi ro ở Mục 5.4, hệ thống được tiến hành đánh giá lại để xác định **Mức độ rủi ro còn lại (Residual Risk)**:
+        </p>
+
+        <p class="fw-bold">Bảng 5.3. Bảng so sánh rủi ro ban đầu và rủi ro còn lại sau khi khắc phục</p>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 8%;">Mã RR</th>
+                        <th style="width: 27%;">Mối đe dọa / Rủi ro</th>
+                        <th style="width: 15%;">Rủi ro ban đầu</th>
+                        <th style="width: 30%;">Giải pháp kiểm soát đã áp dụng</th>
+                        <th style="width: 20%;">Rủi ro còn lại & Khả năng chấp nhận</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">R01</td>
+                        <td>Chiếm quyền quản trị Gateway do mật khẩu mặc định</td>
+                        <td><span class="badge-risk-high">Cao (16)</span></td>
+                        <td>Đổi mật khẩu mạnh, chặn IP truy cập sai nhiều lần.</td>
+                        <td><span class="badge-risk-low">Thấp (4)</span> - Chấp nhận được</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">R02</td>
+                        <td>Nghe lén và chỉnh sửa dữ liệu trên kênh truyền</td>
+                        <td><span class="badge-risk-high">Cao (20)</span></td>
+                        <td>Triển khai mã hóa TLS 1.3 cho toàn bộ luồng truyền.</td>
+                        <td><span class="badge-risk-low">Thấp (5)</span> - Chấp nhận được</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">R03</td>
+                        <td>Khai thác lỗ hổng firmware cũ của thiết bị</td>
+                        <td><span class="badge-risk-med">Trung bình (12)</span></td>
+                        <td>Cập nhật firmware mới nhất, đóng các cổng không sử dụng.</td>
+                        <td><span class="badge-risk-low">Thấp (3)</span> - Chấp nhận được</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">R04</td>
+                        <td>Tấn công Từ chối dịch vụ (DoS) vào Gateway</td>
+                        <td><span class="badge-risk-med">Trung bình (10)</span></td>
+                        <td>Giới hạn tần suất gửi tin (Rate limiting) tại Gateway.</td>
+                        <td><span class="badge-risk-low">Thấp (4)</span> - Chấp nhận được</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <strong>Đánh giá khả năng chấp nhận:</strong> Tất cả các rủi ro sau khi áp dụng biện pháp giảm thiểu đều chuyển về mức **Thấp (1 - 5)**. Đây là ngưỡng rủi ro còn lại nằm trong khả năng chấp nhận được của hệ thống IoT quy mô nhỏ, đảm bảo sự cân bằng giữa chi phí triển khai giải pháp an ninh và hiệu quả bảo vệ tài sản.
+        </p>
+
+        <h2>5.6. Tiểu kết Chương 5</h2>
+        <p>
+            Chương 5 đã hoàn thành việc đánh giá bảo mật toàn diện cho hệ thống IoT quy mô nhỏ thông qua việc xác định tài sản, phân tích mối đe dọa, xây dựng ma trận rủi ro 5×5 và đề xuất các giải pháp khắc phục cụ thể. Kết quả đánh giá rủi ro còn lại cho thấy các giải pháp được đề xuất mang lại hiệu quả rõ rệt, giúp đưa toàn bộ các nguy cơ cao về ngưỡng an toàn có thể chấp nhận được.
+        </p>
+
+        <br>
+        <a href="index.html" class="btn btn-primary">
+            ← Quay về Trang chủ
+        </a>
+
+    </div>
+</div>
+
+<!-- MathJax CDN for LaTeX Rendering -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết đề tài 35 - Chương 5</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: #f4f6fb;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+}
+
+.paper {
+    background: white;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+    margin: 40px 0;
+}
+
+h1 {
+    color: #2d2dff;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #4b0082;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+h3 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p, li {
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #333;
+}
+
+ul, ol {
+    margin-bottom: 20px;
+}
+
+.image-box {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05);
+    margin: 25px 0 30px 0;
+}
+
+.image-box img {
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.image-box h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin: 0;
+    font-style: italic;
+}
+
+.badge-risk-high {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.badge-risk-med {
+    background-color: #ffc107;
+    color: #000;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.badge-risk-low {
+    background-color: #198754;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.matrix-table td, .matrix-table th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.matrix-high {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.matrix-med {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+
+.matrix-low {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+table {
+    margin-top: 20px;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="paper">
+
+        <h1>CHƯƠNG 5. ĐÁNH GIÁ BẢO MẬT</h1>
+        <hr>
+
+        <p>
+            Chương này tập trung vào việc đánh giá mức độ rủi ro của hệ thống IoT quy mô nhỏ dựa trên các tài sản cần bảo vệ, các mối đe dọa và lỗ hổng bảo mật đã được nhận diện. Đồng thời, chương cũng trình bày các biện pháp giảm thiểu và đánh giá rủi ro còn lại sau khi áp dụng các giải pháp bảo mật.
+        </p>
+
+        <h2>5.1. Tài sản và dữ liệu</h2>
+        <p>
+            Việc nhận diện và phân loại tài sản là bước khởi đầu quan trọng trong quy trình quản lý rủi ro dựa trên tài sản (Asset-Based Risk Assessment). Tài sản của hệ thống IoT quy mô nhỏ được chi làm các nhóm cơ bản dưới đây:
+        </p>
+
+        <p class="fw-bold">Bảng 5.1. Phân loại và định giá tài sản hệ thống IoT</p>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 10%;">Mã TS</th>
+                        <th style="width: 25%;">Tên tài sản</th>
+                        <th style="width: 20%;">Phân loại</th>
+                        <th style="width: 30%;">Mô tả & Mức độ quan trọng</th>
+                        <th style="width: 15%;">Mức ưu tiên</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">TS01</td>
+                        <td>Gateway IoT</td>
+                        <td>Phần cứng / Thiết bị</td>
+                        <td>Điểm trung tâm xử lý và điều phối dữ liệu mạng nội bộ.</td>
+                        <td><span class="badge-risk-high">Rất cao</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">TS02</td>
+                        <td>Cảm biến & Thiết bị cuối</td>
+                        <td>Phần cứng / IoT Node</td>
+                        <td>Thu thập thông tin môi trường và thực thi điều khiển.</td>
+                        <td><span class="badge-risk-med">Trung bình</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">TS03</td>
+                        <td>Dữ liệu truyền tải</td>
+                        <td>Dữ liệu / Luồng tin</td>
+                        <td>Dữ liệu cảm biến, câu lệnh điều khiển lưu thông trên mạng.</td>
+                        <td><span class="badge-risk-high">Cao</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">TS04</td>
+                        <td>Tài khoản quản trị</td>
+                        <td>Định danh / Quyền hạn</td>
+                        <td>Thông tin đăng nhập ứng dụng quản lý và hệ thống Gateway.</td>
+                        <td><span class="badge-risk-high">Rất cao</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">TS05</td>
+                        <td>Firmware & Cấu hình</td>
+                        <td>Phần mềm / Cấu hình</td>
+                        <td>Chương trình nhúng điều khiển thiết bị và thông số mạng.</td>
+                        <td><span class="badge-risk-med">Trung bình</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SƠ ĐỒ KIẾN TRÚC TÀI SẢN -->
+        <div class="image-box">
+            <img src="images/Picture1.png" class="img-fluid" alt="Phân bố tài sản trong kiến trúc IoT">
+            <h4>Hình 5.1. Vị trí các nhóm tài sản trong kiến trúc tổng thể hệ thống IoT</h4>
+        </div>
+
+        <h2>5.2. Mối đe dọa và lỗ hổng</h2>
+        <p>
+            Dựa trên khung chuẩn <strong>OWASP IoT Security Project</strong> và <strong>NIST SP 800-30</strong>, đề tài nhận diện các mối đe dọa chính tương ứng với những lỗ hổng bảo mật phổ biến tồn tại trong hệ thống IoT quy mô nhỏ:
+        </p>
+        <ul>
+            <li><strong>Lỗ hổng mật khẩu yếu / Mặc định (Insecure Default Settings):</strong> Người dùng không thay đổi mật khẩu mặc định của thiết bị Gateway hoặc ứng dụng, tạo điều kiện cho kẻ tấn công dò quét (Brute-force) và chiếm quyền quản trị.</li>
+            <li><strong>Lỗ hổng truyền thông không mã hóa (Insecure Network Services):</strong> Dữ liệu cảm biến và lệnh điều khiển được gửi qua giao thức mã rõ (HTTP, MQTT không mã hóa SSL/TLS), dẫn đến nguy cơ bị nghe lén (Sniffing) hoặc tấn công đứng giữa (Man-in-the-Middle).</li>
+            <li><strong>Thiếu cơ chế cập nhật an toàn (Lack of Secure Update Mechanism):</strong> Firmware không được ký số (Digital Signature) hoặc không được cập nhật định kỳ, khiến thiết bị dễ bị cài cắm mã độc.</li>
+            <li><strong>Thiếu kiểm soát truy cập và phân quyền (Insufficient Authentication/Authorization):</strong> Ranh giới tin cậy không được phân tách rõ ràng, tài khoản người dùng thông thường có thể truy cập các chức năng quản trị.</li>
+        </ul>
+
+        <h2>5.3. Ma trận rủi ro</h2>
+        <p>
+            Mức độ rủi ro được tính toán dựa trên khả năng xảy ra (Likelihood - thang điểm từ 1 đến 5) và mức độ tác động (Impact - thang điểm từ 1 đến 5) theo công thức:
+        </p>
+        <p class="text-center fw-bold style-formula" style="font-size: 1.2rem; color: #2d2dff;">
+            Mức độ rủi ro (Risk) = Khả năng xảy ra (Likelihood) &times; Mức độ tác động (Impact)
+        </p>
+
+        <p class="fw-bold">Bảng 5.2. Ma trận đánh giá rủi ro 5×5 (Risk Matrix)</p>
+        <div class="table-responsive">
+            <table class="table table-bordered matrix-table">
+                <thead class="table-light">
+                    <tr>
+                        <th rowspan="2" style="vertical-align: middle;">Khả năng xảy ra (Likelihood)</th>
+                        <th colspan="5">Mức độ tác động (Impact)</th>
+                    </tr>
+                    <tr>
+                        <th style="width: 15%;">1 - Rất thấp</th>
+                        <th style="width: 15%;">2 - Thấp</th>
+                        <th style="width: 15%;">3 - Trung bình</th>
+                        <th style="width: 15%;">4 - Cao</th>
+                        <th style="width: 15%;">5 - Rất cao</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>5 - Rất cao</th>
+                        <td class="matrix-med">5 (TB)</td>
+                        <td class="matrix-med">10 (TB)</td>
+                        <td class="matrix-high">15 (Cao)</td>
+                        <td class="matrix-high">20 (Cao)</td>
+                        <td class="matrix-high">25 (Cao)</td>
+                    </tr>
+                    <tr>
+                        <th>4 - Cao</th>
+                        <td class="matrix-low">4 (Thấp)</td>
+                        <td class="matrix-med">8 (TB)</td>
+                        <td class="matrix-med">12 (TB)</td>
+                        <td class="matrix-high">16 (Cao)</td>
+                        <td class="matrix-high">20 (Cao)</td>
+                    </tr>
+                    <tr>
+                        <th>3 - Trung bình</th>
+                        <td class="matrix-low">3 (Thấp)</td>
+                        <td class="matrix-med">6 (TB)</td>
+                        <td class="matrix-med">9 (TB)</td>
+                        <td class="matrix-high">12 (Cao)</td>
+                        <td class="matrix-high">15 (Cao)</td>
+                    </tr>
+                    <tr>
+                        <th>2 - Thấp</th>
+                        <td class="matrix-low">2 (Thấp)</td>
+                        <td class="matrix-low">4 (Thấp)</td>
+                        <td class="matrix-med">6 (TB)</td>
+                        <td class="matrix-med">8 (TB)</td>
+                        <td class="matrix-med">10 (TB)</td>
+                    </tr>
+                    <tr>
+                        <th>1 - Rất thấp</th>
+                        <td class="matrix-low">1 (Thấp)</td>
+                        <td class="matrix-low">2 (Thấp)</td>
+                        <td class="matrix-low">3 (Thấp)</td>
+                        <td class="matrix-low">4 (Thấp)</td>
+                        <td class="matrix-med">5 (TB)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Phân vùng mức độ ưu tiên xử lý:</strong></p>
+        <ul>
+            <li><span class="badge-risk-high">Mức Cao (12 - 25):</span> Cần áp dụng giải pháp khắc phục ngay lập tức.</li>
+            <li><span class="badge-risk-med">Mức Trung bình (5 - 10):</span> Cần lập kế hoạch kiểm soát và theo dõi định kỳ.</li>
+            <li><span class="badge-risk-low">Mức Thấp (1 - 4):</span> Mức độ nguy cơ chấp nhận được, duy trì quy trình kiểm tra hiện tại.</li>
+        </ul>
+
+        <h2>5.4. Biện pháp giảm thiểu</h2>
+        <p>
+            Đối với các rủi ro được định vị ở mức **Cao** và **Trung bình**, đề tài đề xuất tập hợp các biện pháp kỹ thuật và quản lý nhằm đưa mức độ rủi ro về ngưỡng an toàn:
+        </p>
+
+        <!-- SƠ ĐỒ QUY TRÌNH ÁP DỤNG BIỆN PHÁP GIẢM THIỂU -->
+        <div class="image-box">
+            <img src="images/Picture2.png" class="img-fluid" alt="Quy trình triển khai giảm thiểu rủi ro">
+            <h4>Hình 5.2. Quy trình từng bước áp dụng biện pháp giảm thiểu và kiểm soát rủi ro</h4>
+        </div>
+
+        <ol>
+            <li><strong>Cấu hình an toàn và Quản lý định danh:</strong> Bắt buộc thay đổi mật khẩu mặc định ngay khi thiết lập hệ thống. Áp dụng chính sách mật khẩu phức tạp (tối thiểu 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt) và kích hoạt xác thực hai yếu tố (2FA) cho tài khoản quản trị.</li>
+            <li><strong>Mã hóa kênh truyền thông:</strong> Triển khai giao thức MQTTS (MQTT over TLS/SSL) cho kết nối giữa Cảm biến &rarr; Gateway và HTTPS cho kết nối Gateway &rarr; Server/Cloud nhằm bảo đảm tính bí mật và toàn vẹn của dữ liệu.</li>
+            <li><strong>Phân đoạn mạng (Network Segmentation):</strong> Thiết lập mạng Wi-Fi riêng biệt (Guest Network / VLAN) dành riêng cho các thiết bị IoT, ngăn cách hoàn toàn với mạng làm việc chính của người dùng.</li>
+            <li><strong>Cập nhật Firmware và Bảo trì:</strong> Xây dựng quy trình cập nhật firmware định kỳ, chỉ sử dụng bản cập nhật chính thức từ nhà sản xuất có chữ ký số xác thực.</li>
+        </ol>
+
+        <h2>5.5. Rủi ro còn lại</h2>
+        <p>
+            Sau khi áp dụng đầy đủ các biện pháp kiểm soát và giảm thiểu rủi ro ở Mục 5.4, hệ thống được tiến hành đánh giá lại để xác định **Mức độ rủi ro còn lại (Residual Risk)**:
+        </p>
+
+        <p class="fw-bold">Bảng 5.3. Bảng so sánh rủi ro ban đầu và rủi ro còn lại sau khi khắc phục</p>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 8%;">Mã RR</th>
+                        <th style="width: 27%;">Mối đe dọa / Rủi ro</th>
+                        <th style="width: 15%;">Rủi ro ban đầu</th>
+                        <th style="width: 30%;">Giải pháp kiểm soát đã áp dụng</th>
+                        <th style="width: 20%;">Rủi ro còn lại & Khả năng chấp nhận</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">R01</td>
+                        <td>Chiếm quyền quản trị Gateway do mật khẩu mặc định</td>
+                        <td><span class="badge-risk-high">Cao (16)</span></td>
+                        <td>Đổi mật khẩu mạnh, chặn IP truy cập sai nhiều lần.</td>
+                        <td><span class="badge-risk-low">Thấp (4)</span> - Chấp nhận được</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">R02</td>
+                        <td>Nghe lén và chỉnh sửa dữ liệu trên kênh truyền</td>
+                        <td><span class="badge-risk-high">Cao (20)</span></td>
+                        <td>Triển khai mã hóa TLS 1.3 cho toàn bộ luồng truyền.</td>
+                        <td><span class="badge-risk-low">Thấp (5)</span> - Chấp nhận được</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">R03</td>
+                        <td>Khai thác lỗ hổng firmware cũ của thiết bị</td>
+                        <td><span class="badge-risk-med">Trung bình (12)</span></td>
+                        <td>Cập nhật firmware mới nhất, đóng các cổng không sử dụng.</td>
+                        <td><span class="badge-risk-low">Thấp (3)</span> - Chấp nhận được</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">R04</td>
+                        <td>Tấn công Từ chối dịch vụ (DoS) vào Gateway</td>
+                        <td><span class="badge-risk-med">Trung bình (10)</span></td>
+                        <td>Giới hạn tần suất gửi tin (Rate limiting) tại Gateway.</td>
+                        <td><span class="badge-risk-low">Thấp (4)</span> - Chấp nhận được</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <strong>Đánh giá khả năng chấp nhận:</strong> Tất cả các rủi ro sau khi áp dụng biện pháp giảm thiểu đều chuyển về mức **Thấp (1 - 5)**. Đây là ngưỡng rủi ro còn lại nằm trong khả năng chấp nhận được của hệ thống IoT quy mô nhỏ, đảm bảo sự cân bằng giữa chi phí triển khai giải pháp an ninh và hiệu quả bảo vệ tài sản.
+        </p>
+
+        <h2>5.6. Tiểu kết Chương 5</h2>
+        <p>
+            Chương 5 đã hoàn thành việc đánh giá bảo mật toàn diện cho hệ thống IoT quy mô nhỏ thông qua việc xác định tài sản, phân tích mối đe dọa, xây dựng ma trận rủi ro 5×5 và đề xuất các giải pháp khắc phục cụ thể. Kết quả đánh giá rủi ro còn lại cho thấy các giải pháp được đề xuất mang lại hiệu quả rõ rệt, giúp đưa toàn bộ các nguy cơ cao về ngưỡng an toàn có thể chấp nhận được.
+        </p>
+
+        <br>
+        <a href="index.html" class="btn btn-primary">
+            ← Quay về Trang chủ
+        </a>
+
+    </div>
+</div>
+
+<!-- MathJax CDN for LaTeX Rendering -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
