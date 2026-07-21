@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết đề tài 35 - Chương 2</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: #f4f6fb;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+}
+
+.paper {
+    background: white;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+    margin: 40px 0;
+}
+
+h1 {
+    color: #2d2dff;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #4b0082;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+h3 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p, li {
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #333;
+}
+
+ul {
+    margin-bottom: 20px;
+}
+
+.image-box {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05);
+    margin: 20px 0 30px 0;
+}
+
+.image-box img {
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.image-box h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin: 0;
+    font-style: italic;
+}
+
+.formula-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #2d2dff;
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+table {
+    margin-top: 20px;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="paper">
+
+        <h1>CHƯƠNG 2. CƠ SỞ LÝ THUYẾT VÀ TÀI LIỆU LIÊN QUAN</h1>
+        <hr>
+
+        <h2>2.1. Kiến trúc hoặc bối cảnh kỹ thuật của hệ thống</h2>
+        <p>
+            Hệ thống IoT quy mô nhỏ trong phạm vi đề tài được xây dựng theo mô hình nhiều lớp, bao gồm các thiết bị IoT, gateway, mạng truyền thông, máy chủ lưu trữ và ứng dụng quản lý. Kiến trúc này phản ánh mô hình triển khai phổ biến trong các hộ gia đình, phòng thí nghiệm và doanh nghiệp nhỏ, nơi các thiết bị kết nối Internet để thu thập và trao đổi dữ liệu phục vụ quá trình giám sát và điều khiển.
+        </p>
+        <p>
+            <strong>Ở lớp thiết bị (Device Layer):</strong> Các cảm biến nhiệt độ, độ ẩm, camera IP và các bộ điều khiển có nhiệm vụ thu thập dữ liệu từ môi trường hoặc thực hiện các thao tác điều khiển. Các thiết bị này thường có tài nguyên phần cứng hạn chế nên dễ gặp các vấn đề về bảo mật nếu không được cấu hình đúng cách.
+        </p>
+        <p>
+            <strong>Gateway:</strong> Đóng vai trò là trung gian giữa các thiết bị IoT và hệ thống quản lý. Thành phần này chịu trách nhiệm thu thập dữ liệu từ các thiết bị, thực hiện chuyển đổi giao thức khi cần thiết, kiểm soát lưu lượng và truyền dữ liệu đến máy chủ thông qua mạng Internet hoặc mạng nội bộ. Do gateway là điểm tập trung của quá trình giao tiếp nên đây cũng là thành phần có mức độ rủi ro cao và cần được bảo vệ bằng các cơ chế xác thực, phân quyền và mã hóa.
+        </p>
+        <p>
+            <strong>Máy chủ (Server hoặc Cloud):</strong> Tiếp nhận dữ liệu từ gateway để lưu trữ, xử lý và cung cấp các dịch vụ quản lý. Thông qua giao diện web hoặc ứng dụng di động, người quản trị có thể theo dõi trạng thái thiết bị, xem dữ liệu cảm biến, cấu hình hệ thống và thực hiện các thao tác quản trị từ xa.
+        </p>
+        <p>
+            Trong kiến trúc này, <strong>ranh giới tin cậy (Trust Boundary)</strong> được xác định giữa mạng nội bộ và Internet, cũng như giữa gateway với máy chủ quản lý. Dữ liệu khi vượt qua ranh giới tin cậy cần được bảo vệ bằng các cơ chế mã hóa, xác thực người dùng và kiểm soát truy cập nhằm hạn chế nguy cơ nghe lén, giả mạo hoặc truy cập trái phép.
+        </p>
+
+        <!-- SƠ ĐỒ KIẾN TRÚC -->
+        <div class="image-box">
+            <img src="images/Picture1.png" class="img-fluid" alt="Kiến trúc IoT">
+            <h4>Hình 2.1. Kiến trúc tổng thể hệ thống IoT quy mô nhỏ</h4>
+        </div>
+
+        <h2>2.2. Khái niệm bảo mật trực tiếp liên quan</h2>
+        <p>
+            Để đánh giá rủi ro cho hệ thống IoT quy mô nhỏ, đề tài sử dụng một số khái niệm bảo mật nền tảng làm cơ sở cho quá trình phân tích và xây dựng giải pháp:
+        </p>
+        <ul>
+            <li><strong>Tài sản (Asset):</strong> Là những thành phần có giá trị cần được bảo vệ trong hệ thống. Đối với hệ thống IoT, tài sản bao gồm thiết bị IoT, gateway, dữ liệu cảm biến, tài khoản quản trị, firmware, khóa mã hóa và hạ tầng mạng.</li>
+            <li><strong>Mối đe dọa (Threat):</strong> Là các sự kiện hoặc hành động có khả năng khai thác điểm yếu của hệ thống và gây ảnh hưởng đến hoạt động bình thường. Một số mối đe dọa phổ biến gồm truy cập trái phép, giả mạo thiết bị, phát tán mã độc, tấn công từ chối dịch vụ (DoS) và nghe lén dữ liệu.</li>
+            <li><strong>Lỗ hổng (Vulnerability):</strong> Là điểm yếu tồn tại trong thiết bị, phần mềm hoặc quy trình quản lý có thể bị kẻ tấn công khai thác. Ví dụ như sử dụng mật khẩu mặc định, firmware chưa cập nhật, cấu hình sai hoặc giao tiếp không được mã hóa.</li>
+            <li><strong>Rủi ro (Risk):</strong> Là khả năng xảy ra sự cố bảo mật khi một mối đe dọa khai thác thành công lỗ hổng của hệ thống và gây ra thiệt hại đối với tài sản.</li>
+        </ul>
+
+        <p>Trong đề tài, mức độ rủi ro được đánh giá theo công thức:</p>
+        <div class="formula-box">
+            $$\text{Risk} = \text{Likelihood} \times \text{Impact}$$
+            <div class="mt-2 text-muted" style="font-size: 16px;">
+                Trong đó: <em>Likelihood</em> là khả năng xảy ra và <em>Impact</em> là mức độ ảnh hưởng của sự cố.
+            </div>
+        </div>
+
+        <h3>Mô hình CIA</h3>
+        <p>Mô hình CIA là nền tảng của an toàn thông tin, bao gồm ba thuộc tính cơ bản:</p>
+        <ul>
+            <li><strong>Confidentiality (Tính bí mật):</strong> Đảm bảo dữ liệu chỉ được truy cập bởi các đối tượng được phép.</li>
+            <li><strong>Integrity (Tính toàn vẹn):</strong> Đảm bảo dữ liệu không bị thay đổi trái phép trong quá trình lưu trữ hoặc truyền tải.</li>
+            <li><strong>Availability (Tính sẵn sàng):</strong> Đảm bảo hệ thống luôn sẵn sàng phục vụ người dùng khi cần thiết.</li>
+        </ul>
+
+        <h3>Xác thực, phân quyền và Firmware</h3>
+        <p>
+            <strong>Xác thực (Authentication)</strong> là quá trình kiểm tra danh tính của người dùng hoặc thiết bị trước khi cho phép truy cập hệ thống. Sau khi xác thực thành công, cơ chế <strong>phân quyền (Authorization)</strong> sẽ quyết định các chức năng mà người dùng được phép thực hiện.
+        </p>
+        <p>
+            <strong>Firmware</strong> là chương trình điều khiển được cài đặt trực tiếp trên thiết bị IoT. Nếu firmware tồn tại lỗ hổng hoặc không được cập nhật định kỳ thì thiết bị rất dễ bị khai thác và chiếm quyền điều khiển.
+        </p>
+
+        <h2>2.3. Nội dung cần nhấn mạnh theo nhóm đề tài</h2>
+        <p>
+            Đề tài thuộc <strong>Hướng G – Quản trị rủi ro, chính sách, checklist và kiểm thử</strong>, vì vậy nội dung trọng tâm của chương này tập trung vào các phương pháp quản lý rủi ro và các tiêu chuẩn bảo mật dành cho hệ thống IoT. Các nội dung chính bao gồm:
+        </p>
+        <ul>
+            <li>Quy trình quản lý rủi ro đối với hệ thống IoT quy mô nhỏ.</li>
+            <li>Phương pháp nhận diện tài sản và xác định giá trị tài sản.</li>
+            <li>Phương pháp nhận diện mối đe dọa và lỗ hổng bảo mật.</li>
+            <li>Xây dựng Risk Register phục vụ đánh giá rủi ro.</li>
+            <li>Phương pháp đánh giá rủi ro bằng ma trận 5×5.</li>
+            <li>Áp dụng các hướng dẫn của OWASP ISVS, OWASP ISTG và NIST SP 800-30.</li>
+            <li>Xây dựng checklist kiểm tra bảo mật định kỳ.</li>
+            <li>Đề xuất quy trình xử lý và giảm thiểu rủi ro cho hệ thống IoT.</li>
+        </ul>
+
+        <!-- SƠ ĐỒ QUY TRÌNH QUẢN LÝ RỦI RO -->
+        <div class="image-box">
+            <img src="images/Picture2.png" class="img-fluid" alt="Quy trình quản lý rủi ro">
+            <h4>Hình 2.2. Quy trình quản lý rủi ro bảo mật</h4>
+        </div>
+
+        <h2>2.4. Chuẩn, công cụ và nguồn GitHub chính</h2>
+        <p class="fw-bold">Bảng 2.1. Danh mục chuẩn, công cụ và nguồn tham khảo chính</p>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 8%;">STT</th>
+                    <th style="width: 35%;">Chuẩn / Công cụ</th>
+                    <th>Mục đích sử dụng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td><strong>OWASP IoT Security Project</strong></td>
+                    <td>Tham khảo các rủi ro và lỗ hổng phổ biến của thiết bị IoT</td>
+                </tr>
+                <tr>
+                    <td class="text-center">2</td>
+                    <td><strong>OWASP IoT Security Verification Standard (ISVS)</strong></td>
+                    <td>Đánh giá các yêu cầu bảo mật của hệ thống IoT</td>
+                </tr>
+                <tr>
+                    <td class="text-center">3</td>
+                    <td><strong>OWASP IoT Security Testing Guide (ISTG)</strong></td>
+                    <td>Hướng dẫn kiểm thử bảo mật thiết bị IoT</td>
+                </tr>
+                <tr>
+                    <td class="text-center">4</td>
+                    <td><strong>NIST SP 800-30</strong></td>
+                    <td>Phương pháp đánh giá và quản lý rủi ro</td>
+                </tr>
+                <tr>
+                    <td class="text-center">5</td>
+                    <td><strong>NISTIR 8259</strong></td>
+                    <td>Yêu cầu an toàn cho thiết bị IoT</td>
+                </tr>
+                <tr>
+                    <td class="text-center">6</td>
+                    <td><strong>OWASP IoTGoat</strong></td>
+                    <td>Mô hình tham khảo phục vụ nghiên cứu</td>
+                </tr>
+                <tr>
+                    <td class="text-center">7</td>
+                    <td><strong>Eclipse Mosquitto MQTT</strong></td>
+                    <td>Mô phỏng giao thức truyền thông MQTT</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2.5. Công trình hoặc giải pháp liên quan</h2>
+        <p>
+            Nhiều nghiên cứu và hướng dẫn đã được công bố nhằm nâng cao mức độ an toàn cho các hệ thống IoT. Trong đó, <strong>OWASP IoT Security Project</strong> là một trong những tài liệu được sử dụng rộng rãi, cung cấp danh sách các lỗ hổng và rủi ro phổ biến như mật khẩu mặc định, dịch vụ mạng không an toàn, thiếu cơ chế cập nhật firmware và bảo vệ dữ liệu chưa đầy đủ. Ưu điểm của tài liệu này là tập trung trực tiếp vào các vấn đề bảo mật đặc thù của IoT, tuy nhiên chưa đưa ra quy trình đánh giá rủi ro chi tiết cho từng hệ thống cụ thể.
+        </p>
+        <p>
+            Bên cạnh đó, <strong>NIST Cybersecurity Framework (CSF)</strong> cung cấp mô hình quản lý rủi ro gồm năm nhóm chức năng: <em>Identify, Protect, Detect, Respond</em> và <em>Recover</em>. Khung làm việc này giúp các tổ chức xây dựng quy trình quản lý rủi ro một cách có hệ thống, tuy nhiên cần được điều chỉnh để phù hợp với các hệ thống IoT quy mô nhỏ có nguồn lực hạn chế.
+        </p>
+        <p>
+            Ngoài ra, <strong>NISTIR 8259</strong> đưa ra các yêu cầu bảo mật cơ bản đối với thiết bị IoT như quản lý định danh, kiểm soát truy cập, cập nhật phần mềm, bảo vệ dữ liệu và ghi nhật ký hoạt động. Đây là nền tảng quan trọng để xây dựng checklist kiểm tra bảo mật trong đề tài.
+        </p>
+        <p>
+            Đề tài kế thừa các hướng dẫn của OWASP và NIST để xây dựng mô hình quản lý rủi ro phù hợp với hệ thống IoT quy mô nhỏ, bao gồm nhận diện tài sản, phân tích mối đe dọa, xây dựng Risk Register, đánh giá rủi ro theo ma trận 5×5 và đề xuất các biện pháp giảm thiểu.
+        </p>
+
+        <h2>2.6. Tiểu kết Chương 2</h2>
+        <p>
+            Chương 2 đã trình bày cơ sở lý thuyết làm nền tảng cho quá trình nghiên cứu của đề tài. Nội dung bao gồm kiến trúc tổng thể của hệ thống IoT quy mô nhỏ, các khái niệm bảo mật quan trọng như tài sản, mối đe dọa, lỗ hổng, rủi ro, mô hình CIA, xác thực và firmware. Đồng thời, chương cũng giới thiệu các tiêu chuẩn và hướng dẫn bảo mật phổ biến như OWASP IoT Security Project, OWASP ISVS, OWASP ISTG và NIST SP 800-30 để làm cơ sở cho việc đánh giá rủi ro.
+        </p>
+        <p>
+            Những kiến thức và tài liệu được trình bày trong chương này sẽ là nền tảng để Chương 3 xây dựng phương pháp nghiên cứu, thiết kế quy trình quản lý rủi ro và triển khai mô hình đánh giá bảo mật cho hệ thống IoT quy mô nhỏ.
+        </p>
+
+        <br>
+        <a href="index.html" class="btn btn-primary">
+            ← Quay về Trang chủ
+        </a>
+
+    </div>
+</div>
+
+<!-- MathJax CDN for LaTeX Rendering -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

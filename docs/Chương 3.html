@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết đề tài 35 - Chương 3</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: #f4f6fb;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+}
+
+.paper {
+    background: white;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+    margin: 40px 0;
+}
+
+h1 {
+    color: #2d2dff;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #4b0082;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+h3 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p, li {
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #333;
+}
+
+ul, ol {
+    margin-bottom: 20px;
+}
+
+.image-box {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05);
+    margin: 25px 0 30px 0;
+}
+
+.image-box img {
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.image-box h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin: 0;
+    font-style: italic;
+}
+
+.formula-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #2d2dff;
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.flow-step {
+    background-color: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+}
+
+.flow-step h5 {
+    color: #2d2dff;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+table {
+    margin-top: 20px;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="paper">
+
+        <h1>CHƯƠNG 3. PHƯƠNG PHÁP VÀ THIẾT KẾ</h1>
+        <hr>
+
+        <p>
+            Chương này trình bày phương pháp nghiên cứu, mô hình hệ thống, môi trường triển khai và quy trình đánh giá rủi ro được sử dụng trong đề tài. Nội dung được xây dựng dựa trên các hướng dẫn của OWASP IoT Security Project, OWASP IoT Security Verification Standard (ISVS) và NIST SP 800-30 nhằm đảm bảo quá trình đánh giá rủi ro có tính hệ thống, phù hợp với các hệ thống IoT quy mô nhỏ.
+        </p>
+
+        <h2>3.1. Phương pháp thực hiện</h2>
+        <p>
+            Đề tài áp dụng phương pháp quản lý rủi ro bảo mật kết hợp với <strong>phương pháp phân tích định tính (Qualitative Risk Assessment)</strong> để nhận diện và đánh giá các nguy cơ đối với hệ thống IoT quy mô nhỏ. Phương pháp này phù hợp với các hệ thống có quy mô nhỏ, số lượng thiết bị không lớn và chưa có đầy đủ dữ liệu thống kê để thực hiện đánh giá định lượng.
+        </p>
+        <p>Quá trình nghiên cứu được thực hiện theo các bước sau:</p>
+        <ul>
+            <li>Xác định phạm vi của hệ thống IoT cần đánh giá.</li>
+            <li>Xác định và phân loại các tài sản cần bảo vệ.</li>
+            <li>Nhận diện các mối đe dọa và lỗ hổng bảo mật.</li>
+            <li>Đánh giá khả năng xảy ra và mức độ ảnh hưởng của từng rủi ro.</li>
+            <li>Xây dựng bảng Risk Register và ma trận đánh giá rủi ro 5×5.</li>
+            <li>Đề xuất các biện pháp giảm thiểu đối với các rủi ro có mức ưu tiên cao.</li>
+            <li>Đánh giá rủi ro còn lại sau khi áp dụng các biện pháp kiểm soát.</li>
+        </ul>
+        <p>
+            Việc đánh giá rủi ro được thực hiện theo hướng tiếp cận <strong>dựa trên tài sản (Asset-Based Risk Assessment)</strong>, trong đó mỗi tài sản sẽ được phân tích dựa trên các mối đe dọa, lỗ hổng và tác động có thể xảy ra nhằm xác định mức độ ưu tiên xử lý.
+        </p>
+
+        <h2>3.2. Mô hình/kiến trúc đề xuất</h2>
+        <p>
+            Mô hình nghiên cứu của đề tài mô phỏng một hệ thống IoT quy mô nhỏ gồm các thành phần cơ bản như thiết bị IoT, gateway, mạng truyền thông, máy chủ quản lý và người quản trị hệ thống. Đây là mô hình phổ biến được triển khai trong các hộ gia đình, phòng thí nghiệm và doanh nghiệp nhỏ.
+        </p>
+        <p>
+            Trong mô hình này, các thiết bị IoT có nhiệm vụ thu thập dữ liệu từ môi trường và truyền dữ liệu đến gateway thông qua các giao thức truyền thông phù hợp. Gateway tiếp nhận dữ liệu, thực hiện xử lý sơ bộ và gửi đến máy chủ để lưu trữ, phân tích và cung cấp cho ứng dụng quản lý. Người quản trị sử dụng giao diện web hoặc ứng dụng di động để giám sát trạng thái thiết bị, theo dõi dữ liệu và thực hiện các thao tác quản trị.
+        </p>
+        <p><strong>Luồng truyền dữ liệu của hệ thống được mô tả như sau:</strong></p>
+        <div class="p-3 bg-light border rounded text-center font-monospace fw-bold mb-3" style="font-size: 1.1rem; color: #2d2dff;">
+            Thiết bị IoT &rarr; Gateway &rarr; Server/Cloud &rarr; Ứng dụng quản lý &rarr; Người quản trị
+        </div>
+        <p>Để đảm bảo an toàn thông tin, đề tài xem xét các lớp bảo mật chính trong kiến trúc hệ thống gồm:</p>
+        <ul>
+            <li>Bảo mật thiết bị IoT.</li>
+            <li>Bảo mật gateway.</li>
+            <li>Bảo mật mạng truyền thông.</li>
+            <li>Bảo mật máy chủ và cơ sở dữ liệu.</li>
+            <li>Bảo mật ứng dụng quản lý.</li>
+            <li>Quản lý người dùng và phân quyền truy cập.</li>
+        </ul>
+
+        <!-- SƠ ĐỒ KIẾN TRÚC ĐỀ XUẤT -->
+        <div class="image-box">
+            <img src="images/Picture1.png" class="img-fluid" alt="Kiến trúc đề xuất của hệ thống IoT quy mô nhỏ">
+            <h4>Hình 3.1. Kiến trúc đề xuất của hệ thống IoT quy mô nhỏ</h4>
+        </div>
+
+        <h2>3.3. Môi trường, công cụ và dữ liệu</h2>
+        <p>
+            Quá trình nghiên cứu được thực hiện trên môi trường mô phỏng nhằm đảm bảo an toàn và không ảnh hưởng đến các hệ thống thực tế. Dữ liệu sử dụng trong đề tài là dữ liệu giả lập, phục vụ cho việc xây dựng mô hình và đánh giá rủi ro.
+        </p>
+        <p class="fw-bold">Bảng 3.1. Danh mục công cụ và mục đích sử dụng</p>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 30%;">Công cụ / Tài liệu</th>
+                    <th>Mục đích sử dụng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Microsoft Word</strong></td>
+                    <td>Soạn thảo báo cáo chi tiết</td>
+                </tr>
+                <tr>
+                    <td><strong>Draw.io</strong></td>
+                    <td>Thiết kế sơ đồ kiến trúc và quy trình đánh giá</td>
+                </tr>
+                <tr>
+                    <td><strong>Microsoft Excel</strong></td>
+                    <td>Xây dựng Risk Register và ma trận rủi ro 5×5</td>
+                </tr>
+                <tr>
+                    <td><strong>GitHub</strong></td>
+                    <td>Quản lý tài liệu và lưu trữ các sản phẩm đề tài</td>
+                </tr>
+                <tr>
+                    <td><strong>OWASP IoT Security</strong></td>
+                    <td>Tham khảo các lỗ hổng và hướng dẫn bảo mật IoT</td>
+                </tr>
+                <tr>
+                    <td><strong>NIST SP 800-30</strong></td>
+                    <td>Hướng dẫn quy trình đánh giá và quản lý rủi ro</td>
+                </tr>
+                <tr>
+                    <td><strong>NISTIR 8259</strong></td>
+                    <td>Tham khảo các yêu cầu bảo mật nền tảng cho thiết bị IoT</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            Môi trường thực hiện bao gồm máy tính cá nhân chạy hệ điều hành Windows và các phần mềm hỗ trợ thiết kế sơ đồ, xây dựng tài liệu và phân tích dữ liệu.
+        </p>
+
+        <h2>3.4. Quy trình triển khai và đánh giá</h2>
+        <p>
+            Quy trình thực hiện đề tài được xây dựng theo mô hình quản lý rủi ro gồm <strong>sáu bước liên tiếp</strong> nhằm đảm bảo việc đánh giá được thực hiện đầy đủ và có hệ thống:
+        </p>
+
+        <div class="flow-step">
+            <h5>Bước 1. Xây dựng mô hình hệ thống IoT</h5>
+            <p class="mb-0">Xác định các thành phần của hệ thống, bao gồm thiết bị IoT, gateway, máy chủ và ứng dụng quản lý.</p>
+        </div>
+
+        <div class="flow-step">
+            <h5>Bước 2. Xác định tài sản cần bảo vệ</h5>
+            <p class="mb-0">Liệt kê các tài sản quan trọng như thiết bị, dữ liệu, tài khoản quản trị, firmware và cơ sở dữ liệu.</p>
+        </div>
+
+        <div class="flow-step">
+            <h5>Bước 3. Nhận diện mối đe dọa và lỗ hổng</h5>
+            <p class="mb-0">Phân tích các nguy cơ có thể xảy ra đối với từng tài sản, đồng thời xác định các điểm yếu có khả năng bị khai thác.</p>
+        </div>
+
+        <div class="flow-step">
+            <h5>Bước 4. Đánh giá mức độ rủi ro</h5>
+            <p class="mb-1">Mức độ rủi ro được xác định dựa trên công thức:</p>
+            <div class="formula-box my-2">
+                $$\text{Risk} = \text{Likelihood} \times \text{Impact}$$
+            </div>
+            <p class="mb-0">Trong đó: <em>Likelihood</em> là khả năng xảy ra của rủi ro, <em>Impact</em> là mức độ ảnh hưởng khi rủi ro xảy ra.</p>
+        </div>
+
+        <div class="flow-step">
+            <h5>Bước 5. Đề xuất biện pháp giảm thiểu</h5>
+            <p class="mb-0">Đề xuất các giải pháp kỹ thuật và quản lý nhằm giảm khả năng xảy ra hoặc giảm mức độ ảnh hưởng của từng rủi ro.</p>
+        </div>
+
+        <div class="flow-step">
+            <h5>Bước 6. Đánh giá rủi ro còn lại</h5>
+            <p class="mb-0">Sau khi áp dụng các biện pháp kiểm soát, tiến hành đánh giá lại để xác định mức độ rủi ro còn lại và khả năng chấp nhận của hệ thống.</p>
+        </div>
+
+        <!-- SƠ ĐỒ QUY TRÌNH TRIỂN KHAI -->
+        <div class="image-box">
+            <img src="images/Picture2.png" class="img-fluid" alt="Quy trình triển khai đánh giá rủi ro">
+            <h4>Hình 3.2. Quy trình triển khai đánh giá rủi ro</h4>
+        </div>
+
+        <h2>3.5. Tiêu chí đánh giá</h2>
+        <p>Để đánh giá hiệu quả của mô hình quản lý rủi ro, đề tài sử dụng các tiêu chí sau:</p>
+        <ul>
+            <li>Mức độ đầy đủ của danh sách tài sản cần bảo vệ.</li>
+            <li>Khả năng nhận diện đầy đủ các mối đe dọa và lỗ hổng bảo mật.</li>
+            <li>Tính chính xác của quá trình đánh giá mức độ rủi ro.</li>
+            <li>Tính hợp lý của Risk Register và ma trận rủi ro 5×5.</li>
+            <li>Hiệu quả của các biện pháp giảm thiểu được đề xuất.</li>
+            <li>Khả năng áp dụng checklist bảo mật vào hệ thống IoT quy mô nhỏ.</li>
+            <li>Khả năng mở rộng mô hình quản lý rủi ro đối với các hệ thống IoT khác.</li>
+        </ul>
+        <p>
+            Kết quả đánh giá sẽ được trình bày và phân tích chi tiết trong Chương 4 và Chương 5, làm cơ sở để đánh giá hiệu quả của mô hình quản lý rủi ro và đề xuất các hướng cải tiến trong tương lai.
+        </p>
+
+        <br>
+        <a href="index.html" class="btn btn-primary">
+            ← Quay về Trang chủ
+        </a>
+
+    </div>
+</div>
+
+<!-- MathJax CDN for LaTeX Rendering -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

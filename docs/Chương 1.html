@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết đề tài 35 - Chương 1</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: #f4f6fb;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+}
+
+.paper {
+    background: white;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+    margin: 40px 0;
+}
+
+h1 {
+    color: #2d2dff;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #4b0082;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+p, li {
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #333;
+}
+
+ul {
+    margin-bottom: 20px;
+}
+
+table {
+    margin-top: 20px;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="paper">
+
+        <h1>CHƯƠNG 1. TỔNG QUAN ĐỀ TÀI</h1>
+        <hr>
+
+        <h2>1.1. Bối cảnh và lý do chọn đề tài</h2>
+        <p>
+            Internet of Things (IoT) đang phát triển mạnh mẽ và trở thành một trong những công nghệ quan trọng của cuộc Cách mạng công nghiệp lần thứ tư. Các hệ thống IoT được ứng dụng rộng rãi trong nhiều lĩnh vực như nhà thông minh, nông nghiệp thông minh, y tế, giáo dục, giao thông và doanh nghiệp. Thông qua các thiết bị cảm biến, camera IP, bộ điều khiển và gateway, hệ thống IoT có khả năng thu thập, truyền tải và xử lý dữ liệu theo thời gian thực, góp phần nâng cao hiệu quả quản lý, giảm chi phí vận hành và hỗ trợ quá trình ra quyết định.
+        </p>
+        <p>
+            Tuy nhiên, cùng với sự phát triển nhanh chóng đó, các hệ thống IoT, đặc biệt là các hệ thống quy mô nhỏ, đang phải đối mặt với nhiều nguy cơ mất an toàn thông tin. Do hạn chế về chi phí đầu tư, năng lực quản trị và tài nguyên phần cứng, nhiều thiết bị IoT vẫn sử dụng mật khẩu mặc định, thiếu cơ chế xác thực mạnh, không được cập nhật firmware thường xuyên hoặc truyền dữ liệu mà chưa áp dụng các cơ chế mã hóa phù hợp. Những điểm yếu này làm gia tăng nguy cơ bị truy cập trái phép, rò rỉ dữ liệu, chiếm quyền điều khiển thiết bị hoặc trở thành mục tiêu của các cuộc tấn công mạng.
+        </p>
+        <p>
+            Theo OWASP Internet of Things Security Project (OWASP, 2024), các lỗ hổng phổ biến của hệ thống IoT bao gồm sử dụng mật khẩu mặc định, thiếu cơ chế cập nhật firmware và cấu hình không an toàn. Theo NIST SP 800-30 Revision 1 (NIST, 2012), việc đánh giá rủi ro cần thực hiện thông qua quá trình nhận diện tài sản, xác định mối đe dọa, đánh giá tác động và đề xuất biện pháp giảm thiểu.
+        </p>
+        <p>
+            Xuất phát từ những vấn đề trên, việc nghiên cứu đề tài "Quản lý rủi ro bảo mật cho hệ thống IoT quy mô nhỏ" là cần thiết nhằm xây dựng quy trình nhận diện tài sản, phân tích các mối đe dọa và lỗ hổng bảo mật, đánh giá mức độ rủi ro, từ đó đề xuất các biện pháp giảm thiểu phù hợp với điều kiện triển khai thực tế của các hệ thống IoT quy mô nhỏ.
+        </p>
+
+        <h2>1.2. Phát biểu vấn đề bảo mật</h2>
+        <p>
+            Trong các hệ thống IoT quy mô nhỏ, nhiều thành phần quan trọng cần được bảo vệ nhằm đảm bảo hoạt động ổn định và an toàn của hệ thống. Các tài sản chính bao gồm thiết bị IoT (cảm biến, camera IP, gateway), dữ liệu cảm biến, tài khoản quản trị, firmware thiết bị, hệ thống mạng nội bộ và các dịch vụ quản lý từ xa. Đây đều là những thành phần có giá trị và có thể trở thành mục tiêu của các cuộc tấn công mạng.
+        </p>
+        <p>
+            Các mối đe dọa phổ biến đối với hệ thống IoT bao gồm truy cập trái phép do sử dụng mật khẩu yếu hoặc mặc định, nghe lén dữ liệu trong quá trình truyền tải, giả mạo thiết bị, khai thác lỗ hổng từ firmware lỗi thời, cài đặt mã độc, tấn công từ chối dịch vụ (DoS) và thiếu cơ chế giám sát hoạt động của hệ thống. Những lỗ hổng này có thể làm giảm mức độ an toàn của hệ thống, gây mất dữ liệu hoặc làm gián đoạn quá trình vận hành.
+        </p>
+        <p>
+            Nếu không được đánh giá và kiểm soát kịp thời, các rủi ro trên sẽ ảnh hưởng trực tiếp đến ba mục tiêu cốt lõi của an toàn thông tin gồm tính bí mật, tính toàn vẹn và tính sẵn sàng của hệ thống IoT. Bên cạnh đó, nhiều hệ thống IoT quy mô nhỏ hiện nay vẫn chưa áp dụng quy trình quản lý rủi ro một cách đầy đủ, dẫn đến khó khăn trong việc xác định mức độ ưu tiên và lựa chọn biện pháp xử lý phù hợp.
+        </p>
+        <p>
+            Vì vậy, đề tài tập trung xây dựng mô hình quản lý rủi ro bảo mật cho hệ thống IoT quy mô nhỏ thông qua việc xác định tài sản cần bảo vệ, nhận diện các mối đe dọa và lỗ hổng, xây dựng Risk Register, đánh giá mức độ rủi ro bằng ma trận 5×5 và đề xuất các biện pháp giảm thiểu phù hợp.
+        </p>
+
+        <h2>1.3. Mục tiêu của đề tài</h2>
+        <ul>
+            <li><strong>MT-01:</strong> Xác định và phân loại các tài sản quan trọng trong hệ thống IoT quy mô nhỏ làm cơ sở cho quá trình đánh giá rủi ro.</li>
+            <li><strong>MT-02:</strong> Phân tích các mối đe dọa, lỗ hổng bảo mật và đánh giá mức độ ảnh hưởng đối với từng tài sản của hệ thống.</li>
+            <li><strong>MT-03:</strong> Xây dựng Risk Register và ma trận đánh giá rủi ro 5×5 để xác định mức độ ưu tiên xử lý các rủi ro.</li>
+            <li><strong>MT-04:</strong> Đề xuất kế hoạch xử lý và các biện pháp giảm thiểu đối với các rủi ro có mức độ cao nhằm nâng cao khả năng bảo vệ hệ thống.</li>
+            <li><strong>MT-05:</strong> Xây dựng checklist kiểm tra bảo mật định kỳ giúp hỗ trợ quá trình quản trị và duy trì an toàn cho hệ thống IoT quy mô nhỏ.</li>
+        </ul>
+
+        <h2>1.4. Đối tượng, phạm vi và giới hạn nghiên cứu</h2>
+        <p><strong>Đối tượng nghiên cứu:</strong> Đối tượng nghiên cứu của đề tài là hệ thống IoT quy mô nhỏ, bao gồm các thiết bị cảm biến, camera IP, gateway, dữ liệu cảm biến, tài khoản quản trị và hạ tầng mạng phục vụ việc truyền nhận dữ liệu giữa các thiết bị.</p>
+        <p><strong>Phạm vi nghiên cứu:</strong> Đề tài tập trung phân tích mô hình hệ thống IoT giả lập, sử dụng dữ liệu mẫu và tham khảo các tiêu chuẩn, hướng dẫn bảo mật của OWASP IoT Security Project, NIST SP 800-30 và các tài liệu chuyên ngành liên quan để đánh giá rủi ro và đề xuất giải pháp bảo mật.</p>
+        <p><strong>Giới hạn của đề tài:</strong> Đề tài không thực hiện các hoạt động tấn công hoặc khai thác trên thiết bị IoT thực tế; không thu thập dữ liệu cá nhân của người dùng; không kiểm thử trên các hệ thống nằm ngoài phạm vi được phép. Nội dung nghiên cứu chủ yếu tập trung vào việc nhận diện, đánh giá và quản lý rủi ro bảo mật cho hệ thống IoT quy mô nhỏ.</p>
+
+        <h2>1.5. Sản phẩm và kết quả dự kiến</h2>
+        <ul>
+            <li>Sơ đồ kiến trúc tổng thể của hệ thống IoT quy mô nhỏ.</li>
+            <li>Danh sách các tài sản cần bảo vệ trong hệ thống.</li>
+            <li>Risk Register gồm tối thiểu 15 rủi ro bảo mật.</li>
+            <li>Ma trận đánh giá rủi ro 5×5.</li>
+            <li>Kế hoạch xử lý và giảm thiểu đối với 5 rủi ro có mức độ cao.</li>
+            <li>Checklist kiểm tra bảo mật định kỳ cho hệ thống IoT.</li>
+            <li>README mô tả phạm vi nghiên cứu, nguồn tài liệu tham khảo và hướng dẫn sử dụng các sản phẩm của đề tài.</li>
+        </ul>
+
+        <h2>1.6. Cấu trúc báo cáo</h2>
+        <p>
+            Báo cáo gồm sáu chương, được tổ chức theo trình tự từ cơ sở lý thuyết đến quá trình triển khai và đánh giá kết quả. Chương 1 trình bày tổng quan về đề tài, bối cảnh nghiên cứu, mục tiêu, phạm vi và các sản phẩm dự kiến. Chương 2 giới thiệu cơ sở lý thuyết, các khái niệm và các công trình nghiên cứu liên quan đến bảo mật IoT. Chương 3 trình bày phương pháp nghiên cứu và quy trình xây dựng mô hình quản lý rủi ro. Chương 4 mô tả quá trình triển khai, xây dựng Risk Register và các kết quả đạt được. Chương 5 đánh giá mức độ rủi ro, đề xuất các biện pháp giảm thiểu và checklist bảo mật. Cuối cùng, Chương 6 tổng kết những kết quả đạt được, các hạn chế của đề tài và định hướng phát triển trong tương lai.
+        </p>
+
+        <p class="fw-bold mt-4">Bảng 1.1. Đối chiếu mục tiêu và đầu ra của đề tài</p>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Mục tiêu</th>
+                    <th>Đầu ra tương ứng</th>
+                    <th>Cách kiểm chứng</th>
+                    <th>Chương trình bày</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>MT-01</strong></td>
+                    <td>Danh sách tài sản cần bảo vệ</td>
+                    <td>Bảng tài sản IoT</td>
+                    <td>Chương 4</td>
+                </tr>
+                <tr>
+                    <td><strong>MT-02</strong></td>
+                    <td>Danh sách mối đe dọa và lỗ hổng</td>
+                    <td>Risk Register</td>
+                    <td>Chương 4</td>
+                </tr>
+                <tr>
+                    <td><strong>MT-03</strong></td>
+                    <td>Ma trận đánh giá rủi ro 5×5</td>
+                    <td>Bảng điểm rủi ro</td>
+                    <td>Chương 5</td>
+                </tr>
+                <tr>
+                    <td><strong>MT-04</strong></td>
+                    <td>Kế hoạch xử lý rủi ro</td>
+                    <td>Bảng biện pháp giảm thiểu</td>
+                    <td>Chương 5</td>
+                </tr>
+                <tr>
+                    <td><strong>MT-05</strong></td>
+                    <td>Checklist kiểm tra bảo mật</td>
+                    <td>Danh sách kiểm tra định kỳ</td>
+                    <td>Chương 5</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <a href="index.html" class="btn btn-primary">
+            ← Quay về Trang chủ
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>
