@@ -184,7 +184,7 @@ th {
 
         <!-- SƠ ĐỒ QUY TRÌNH QUẢN LÝ RỦI RO -->
         <div class="image-box">
-            <img src="images/Picture2.png" class="img-fluid" alt="Quy trình quản lý rủi ro">
+            <img src="../images/Picture2.png" class="img-fluid" alt="Quy trình quản lý rủi ro">
             <h4>Hình 2.2. Quy trình quản lý rủi ro bảo mật</h4>
         </div>
 
