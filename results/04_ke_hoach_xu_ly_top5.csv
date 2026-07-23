@@ -1,0 +1,6 @@
+Rui_ro_diem,Chien_luoc,Bien_phap_cu_the,Nguoi_phu_trach,Thoi_han
+"R1 - Truy cap trai phep camera IP (20)",Giam thieu,"Doi toan bo mat khau mac dinh ngay khi lap dat; dat mat khau manh rieng cho tung thiet bi; tat truy cap camera truc tiep tu Internet, chi cho phep qua VPN/cloud relay co xac thuc.","Quan tri he thong (KTV Lab)",Tuan 1
+"R2 - Doan/be mat khau tai khoan admin (20)",Giam thieu,"Ap dung mat khau manh toi thieu 12 ky tu, bat xac thuc da yeu to (MFA) cho tai khoan quan tri router/gateway/dashboard; khoa tai khoan sau 5 lan dang nhap sai.","Quan tri he thong",Tuan 1
+"R3 - Router mo cong ra Internet (15)",Tranh,"Ra soat va dong toan bo port forwarding khong can thiet; thay bang ket noi qua VPN noi bo truong hoac dich vu cloud relay co xac thuc; bat tuong lua tren router.","Quan tri mang",Tuan 2
+"R4 - Gia mao du lieu cam bien (12)",Giam thieu,"Them xac thuc thiet bi (device_id + token/HMAC) tai gateway Node-RED truoc khi chap nhan du lieu; ghi log cac request bi tu choi de theo doi.","Nhom phu trach gateway",Tuan 3
+"R5 - Replay lenh mo khoa cua (10)",Giam thieu,"Bo sung timestamp/nonce cho moi lenh dieu khien khoa; server tu choi lenh trung hoac qua han; gioi han so lan thu mo khoa sai trong 1 phut.","Nhom phu trach khoa/gateway",Tuan 3
