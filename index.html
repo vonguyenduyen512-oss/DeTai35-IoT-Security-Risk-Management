@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đề tài 35 | Quản lý rủi ro bảo mật cho hệ thống IoT quy mô nhỏ</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:#f4f7fb;color:#222;line-height:1.7;}
+.navbar{background:#0f172a !important;transition:.3s;padding:15px 0;}
+.navbar-brand{font-size:1.4rem;font-weight:700;}
+.navbar-brand i{color:#38bdf8;margin-right:8px;}
+.nav-link{color:#fff !important;margin-left:15px;font-weight:500;transition:.3s;}
+.nav-link:hover{color:#38bdf8 !important;}
+.hero{background:linear-gradient(135deg,#0f172a,#1d4ed8);color:white;min-height:95vh;display:flex;align-items:center;}
+.hero h1{font-size:3rem;font-weight:800;line-height:1.3;}
+.hero p{margin-top:20px;font-size:18px;opacity:.95;}
+.hero-image{width:100%;max-width:430px;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-12px);}100%{transform:translateY(0);}}
+.btn-primary{background:#0ea5e9;border:none;padding:13px 28px;border-radius:50px;transition:.3s;font-weight:600;}
+.btn-primary:hover{background:#0284c7;transform:translateY(-4px);}
+.btn-outline-light{border-radius:50px;padding:13px 28px;}
+.btn{transition:.3s;}
+.btn:hover{transform:translateY(-4px);}
+section{padding:90px 0;}
+section h2{font-weight:700;margin-bottom:15px;}
+section p{color:#555;}
+.info-card{background:white;border-radius:20px;padding:35px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.08);transition:.3s;height:100%;}
+.info-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,0,0,.12);}
+.info-card i{font-size:50px;color:#2563eb;margin-bottom:20px;}
+.info-card h5{font-weight:700;margin-bottom:10px;}
+.info-card p{margin:0;color:#666;}
+.badge{padding:10px 18px;border-radius:30px;font-size:15px;}
+img{max-width:100%;}
+.display-4{font-weight:800;}
+.lead{font-size:20px;}
+.shadow-sm{box-shadow:0 10px 30px rgba(0,0,0,.08)!important;}
+.chapter-card{background:#fff;border-radius:20px;overflow:hidden;transition:.35s;box-shadow:0 12px 25px rgba(0,0,0,.08);height:100%;}
+.chapter-card:hover{transform:translateY(-10px);box-shadow:0 25px 45px rgba(0,0,0,.15);}
+.chapter-top{background:linear-gradient(135deg,#2563eb,#0ea5e9);color:white;text-align:center;padding:35px;}
+.chapter-top i{font-size:60px;margin-bottom:15px;}
+.chapter-body{padding:25px;}
+.chapter-body h4{font-weight:700;margin-bottom:15px;}
+.chapter-body p{color:#666;min-height:90px;}
+.chapter-body .btn{margin-top:15px;}
+.image-box{background:white;border-radius:20px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.08);transition:.3s;}
+.image-box:hover{transform:scale(1.02);}
+.image-box img{width:100%;}
+.image-box h4{padding:20px;text-align:center;font-weight:700;}
+.download-box{background:linear-gradient(135deg,#0f172a,#2563eb);color:white;border-radius:25px;padding:50px;text-align:center;}
+.download-box h2{color:white;}
+.download-box p{color:#e5e7eb;}
+.download-box .btn{margin-top:15px;}
+footer{background:#0f172a;color:white;padding:60px 0 20px;}
+footer h4{margin-bottom:20px;font-weight:700;}
+footer p{color:#cbd5e1;}
+footer a{color:white;text-decoration:none;}
+footer a:hover{color:#38bdf8;}
+.footer-bottom{margin-top:40px;border-top:1px solid rgba(255,255,255,.1);padding-top:20px;text-align:center;color:#94a3b8;}
+#topBtn{position:fixed;bottom:25px;right:25px;width:55px;height:55px;border:none;border-radius:50%;background:#2563eb;color:white;display:none;cursor:pointer;z-index:999;font-size:22px;transition:.3s;}
+#topBtn:hover{background:#1d4ed8;transform:translateY(-5px);}
+.section-title{text-align:center;margin-bottom:60px;}
+.section-title h2{font-size:40px;font-weight:700;}
+.section-title p{max-width:700px;margin:auto;color:#666;}
+.fade-up{animation:fadeUp .8s ease;}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
+.stats-section{background:#eef5ff;}
+.stats-card{background:white;padding:35px;text-align:center;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.08);transition:.3s;}
+.stats-card:hover{transform:translateY(-10px);}
+.stats-card i{font-size:55px;color:#2563eb;margin-bottom:15px;}
+.stats-card h2{font-size:42px;font-weight:700;color:#0f172a;}
+.stats-card p{margin-top:10px;font-size:18px;}
+@media(max-width:992px){.hero{padding-top:120px;text-align:center;}.hero h1{font-size:2.4rem;}.hero-image{margin-top:40px;}}
+@media(max-width:768px){.display-4{font-size:2rem;}.section-title h2{font-size:30px;}.info-card{padding:25px;}.chapter-top{padding:25px;}.download-box{padding:35px;}}
+@media(max-width:576px){.navbar-brand{font-size:18px;}.hero h1{font-size:1.8rem;}.lead{font-size:16px;}.btn{width:100%;margin-bottom:10px;}}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#"><i class="bi bi-shield-lock-fill"></i> Đề tài 35</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#gioithieu">Giới thiệu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#noidung">Nội dung</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tailieu">Tài liệu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#lienhe">Liên hệ</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" style="margin-top:0;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <span class="badge bg-warning text-dark fs-6 mb-3">BÁO CÁO MÔN BẢO MẬT IoT</span>
+        <h1 class="display-4 fw-bold">QUẢN LÝ RỦI RO BẢO MẬT<br>CHO HỆ THỐNG IoT QUY MÔ NHỎ</h1>
+        <p class="lead mt-4">Đề tài tập trung đánh giá rủi ro bảo mật cho hệ thống IoT quy mô nhỏ, xây dựng Risk Register, ma trận rủi ro 5×5 và checklist bảo mật dựa trên OWASP IoT Security Project và NIST SP 800-30.</p>
+        <div class="mt-4">
+<a href="noidung.html" class="btn btn-light btn-lg">
+    <i class="bi bi-book"></i> Xem chi tiết
+</a>
+          <a href="docs/BaoCao.pdf" class="btn btn-outline-light btn-lg"><i class="bi bi-download"></i> Tải PDF</a>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center">
+        <div style="width:100%;max-width:420px;height:340px;margin:0 auto;background:rgba(255,255,255,.08);border:2px dashed rgba(255,255,255,.35);border-radius:20px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:14px;text-align:center;padding:20px;" class="hero-image">
+         <img src="images/8bc56478-2eba-4a60-8e40-072ed895b7a7.png"
+     class="banner-img">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light" id="gioithieu">
+  <div class="container">
+    <div class="text-center mb-5"><h2 class="fw-bold">Thông tin đề tài</h2><p class="text-muted">Báo cáo môn học Bảo mật trong IoT</p></div>
+    <div class="row g-4">
+      <div class="col-md-3"><div class="card shadow-sm border-0 h-100"><div class="card-body text-center"><i class="bi bi-person-circle display-5 text-primary"></i><h5 class="mt-3">Sinh viên</h5><p>Võ Nguyễn Duyên</p></div></div></div>
+      <div class="col-md-3"><div class="card shadow-sm border-0 h-100"><div class="card-body text-center"><i class="bi bi-building display-5 text-success"></i><h5 class="mt-3">Trường</h5><p>Đại học Văn Hiến</p></div></div></div>
+      <div class="col-md-3"><div class="card shadow-sm border-0 h-100"><div class="card-body text-center"><i class="bi bi-book display-5 text-danger"></i><h5 class="mt-3">Học phần</h5><p>INT4410</p></div></div></div>
+      <div class="col-md-3"><div class="card shadow-sm border-0 h-100"><div class="card-body text-center"><i class="bi bi-mortarboard-fill display-5 text-warning"></i><h5 class="mt-3">Giảng viên</h5><p>Hồ Nhựt Minh </p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="noidung">
+  <div class="container">
+    <div class="section-title"><h2>Nội dung đồ án</h2><p>Báo cáo được xây dựng theo 6 chương, trình bày từ tổng quan, cơ sở lý thuyết đến phương pháp, triển khai, đánh giá bảo mật và kết luận.</p></div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6"><div class="chapter-card"><div class="chapter-top"><i class="bi bi-book-fill"></i><h3>Chương 1</h3></div><div class="chapter-body"><h4>Tổng quan đề tài</h4><p>Giới thiệu bối cảnh IoT, lý do chọn đề tài, mục tiêu, phạm vi nghiên cứu, đối tượng nghiên cứu và sản phẩm dự kiến.</p><a href="Chương 1.html" class="btn btn-primary">Xem chi tiết</a></div></div></div>
+      <div class="col-lg-4 col-md-6"><div class="chapter-card"><div class="chapter-top"><i class="bi bi-diagram-3-fill"></i><h3>Chương 2</h3></div><div class="chapter-body"><h4>Cơ sở lý thuyết</h4><p>Trình bày kiến trúc hệ thống IoT, CIA Triad, Risk Register, OWASP, NIST, quy trình quản lý rủi ro.</p><a href="Chương 2.html" class="btn btn-primary">Xem chi tiết</a></div></div></div>
+      <div class="col-lg-4 col-md-6"><div class="chapter-card"><div class="chapter-top"><i class="bi bi-cpu-fill"></i><h3>Chương 3</h3></div><div class="chapter-body"><h4>Phương pháp &amp; Thiết kế</h4><p>Đề xuất mô hình, môi trường, quy trình đánh giá, Risk Matrix, các tiêu chí đánh giá.</p><a href="Chương 3.html" class="btn btn-primary">Xem chi tiết</a></div></div></div>
+      <div class="col-lg-4 col-md-6"><div class="chapter-card"><div class="chapter-top"><i class="bi bi-hdd-network-fill"></i><h3>Chương 4</h3></div><div class="chapter-body"><h4>Triển khai &amp; Kết quả</h4><p>Chuẩn bị môi trường, xây dựng sản phẩm, thử nghiệm, đánh giá kết quả và phân tích.</p><a href="Chương 4.html" class="btn btn-primary">Xem chi tiết</a></div></div></div>
+      <div class="col-lg-4 col-md-6"><div class="chapter-card"><div class="chapter-top"><i class="bi bi-shield-lock-fill"></i><h3>Chương 5</h3></div><div class="chapter-body"><h4>Đánh giá bảo mật</h4><p>Đánh giá tài sản, đe dọa, lỗ hổng, Risk Matrix, kế hoạch giảm thiểu và rủi ro còn lại.</p><a href="Chương 5.html" class="btn btn-primary">Xem chi tiết</a></div></div></div>
+      <div class="col-lg-4 col-md-6"><div class="chapter-card"><div class="chapter-top"><i class="bi bi-award-fill"></i><h3>Chương 6</h3></div><div class="chapter-body"><h4>Kết luận</h4><p>Tổng kết kết quả đạt được, hạn chế của đề tài và hướng phát triển trong tương lai.</p><a href="Chương 6.html" class="btn btn-primary">Xem chi tiết</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="container">
+    <div class="section-title"><h2>Tổng quan đề tài</h2><p>Các nội dung chính được thực hiện trong đề tài quản lý rủi ro bảo mật cho hệ thống IoT quy mô nhỏ.</p></div>
+    <div class="row g-4">
+      <div class="col-md-3"><div class="stats-card"><i class="bi bi-cpu-fill"></i><h2 class="counter" data-target="15">0</h2><p>Tài sản cần bảo vệ</p></div></div>
+      <div class="col-md-3"><div class="stats-card"><i class="bi bi-bug-fill"></i><h2 class="counter" data-target="20">0</h2><p>Mối đe dọa</p></div></div>
+      <div class="col-md-3"><div class="stats-card"><i class="bi bi-shield-lock-fill"></i><h2 class="counter" data-target="5">0</h2><p>Biện pháp ưu tiên</p></div></div>
+      <div class="col-md-3"><div class="stats-card"><i class="bi bi-check-circle-fill"></i><h2 class="counter" data-target="100">0</h2><p>Checklist bảo mật</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-title"><h2>Sơ đồ và mô hình</h2><p>Các sơ đồ được xây dựng trong báo cáo.</p></div>
+    <div class="row g-4">
+  <div class="image-box">
+    <img src="images/Picture1.png"
+         class="img-fluid"
+         alt="Kiến trúc IoT">
+
+    <h4>Kiến trúc tổng thể hệ thống IoT quy mô nhỏ</h4>
+</div>
+     <div class="image-box">
+    <img src="images/Picture2.png"
+         class="img-fluid"
+         alt="Quy trình quản lý rủi ro">
+
+    <h4>Quy trình quản lý rủi ro bảo mật</h4>
+</div>
+    </div>
+  </div>
+</section>
+
+<section id="tailieu">
+  <div class="container">
+    <div class="download-box">
+      <h2>Tài liệu báo cáo</h2>
+      <p>Tải báo cáo, Risk Register, Slide và truy cập GitHub.</p>
+      <a href="docs/BaoCao.pdf" class="btn btn-light btn-lg"><i class="bi bi-file-earmark-pdf-fill"></i> Tải báo cáo PDF</a>
+      <a href="https://github.com/vonguyenduyen512-oss/DeTai35-IoT-Security-Risk-Management" target="_blank" class="btn btn-outline-light btn-lg ms-3"><i class="bi bi-github"></i> GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer id="lienhe">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6"><h4>Đề tài 35</h4><p>Quản lý rủi ro bảo mật cho hệ thống IoT quy mô nhỏ.</p></div>
+      <div class="col-lg-6 text-lg-end"><h4>Thông tin</h4><p>Sinh viên: Võ Nguyễn Duyên<br>Trường Đại học Văn Hiến<br>Môn học: Bảo mật IoT (INT4410)</p></div>
+    </div>
+    <div class="footer-bottom">© 2026 - IoT Security Risk Management</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<button id="topBtn" title="Lên đầu trang"><i class="bi bi-arrow-up"></i></button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const topBtn = document.getElementById("topBtn");
+  window.addEventListener("scroll", function () {
+    topBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  });
+  if (topBtn) {
+    topBtn.onclick = function () { window.scrollTo({ top: 0, behavior: "smooth" }); };
+  }
+
+  const navbar = document.querySelector(".navbar");
+  window.addEventListener("scroll", function () {
+    navbar.style.background = "#0f172a";
+    navbar.style.boxShadow = window.scrollY > 50 ? "0 10px 30px rgba(0,0,0,.25)" : "none";
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  const cards = document.querySelectorAll(".info-card,.chapter-card");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("fade-up"); });
+  });
+  cards.forEach(card => observer.observe(card));
+});
+
+const counters = document.querySelectorAll(".counter");
+counters.forEach(counter => {
+  const update = () => {
+    const target = +counter.getAttribute("data-target");
+    const c = +counter.innerText;
+    const inc = target / 80;
+    if (c < target) {
+      counter.innerText = Math.ceil(c + inc);
+      setTimeout(update, 20);
+    } else {
+      counter.innerText = target;
+    }
+  };
+  update();
+});
+</script>
+</body>
+</html>
