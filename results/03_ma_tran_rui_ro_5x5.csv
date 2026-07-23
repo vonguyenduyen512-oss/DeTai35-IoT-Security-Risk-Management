@@ -1,0 +1,6 @@
+Kha_nang_Anh_huong,1_Rat_thap,2_Thap,3_Trung_binh,4_Cao,5_Rat_cao
+5_Rat_cao,-,-,-,"R1(20); R2(20)",-
+4_Cao,-,-,-,"R4(12); R6(12); R7(12)","R3(15)"
+3_Trung_binh,-,-,"R11(9); R12(9); R14(9)","R9(8); R10(8); R13(8); R16(8)",-
+2_Thap,-,"R15(6); R17(6)",-,-,"R5(10); R8(10)"
+1_Rat_thap,-,-,-,-,-
