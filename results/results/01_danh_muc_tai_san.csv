@@ -1,0 +1,11 @@
+STT,Tai_san,Mo_ta_vai_tro,Vi_tri_luu_tru_xu_ly
+1,Camera IP giam sat,"Ghi hinh khu vuc phong Lab, truyen video qua Wi-Fi","Thiet bi + luu cuc bo/cloud"
+2,Cam bien nhiet do/do am,"Giam sat dieu kien moi truong phong may","Gateway -> dashboard cloud"
+3,Cam bien khoi/PIR,"Canh bao chay va phat hien chuyen dong","Gateway noi bo"
+4,Khoa cua dien tu thong minh,"Kiem soat ra vao phong Lab","Thiet bi + app dieu khien"
+5,Gateway/Node-RED,"Thu thap, loc va chuyen tiep du lieu cam bien","May chu noi bo phong Lab"
+6,Router/Access Point Wi-Fi,"Ket noi mang cho toan bo thiet bi IoT","Ha tang mang phong Lab"
+7,Dashboard giam sat tren cloud,"Hien thi trang thai thiet bi, canh bao","Dich vu cloud ben thu ba"
+8,Tai khoan quan tri (admin),"Quan ly cau hinh router, gateway, camera","Luu tren thiet bi/he thong quan ly"
+9,Du lieu log/lich su truy cap,"Ghi nhan su kien ra vao, canh bao","Server noi bo hoac cloud"
+10,Ung dung di dong dieu khien,"Cho phep giang vien/quan tri theo doi tu xa","Dien thoai ca nhan"
